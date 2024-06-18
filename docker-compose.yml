@@ -15,7 +15,7 @@ services:
 
   todo-app:
     build:
-      context: ./todo-app
+      context: ./backend
       dockerfile: Dockerfile
     container_name: todo-app
     depends_on:
