@@ -13,11 +13,11 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
-  todo-app:
+  backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: todo-app
+    container_name: todo-app-backend
     depends_on:
       - postgres
     environment:
@@ -26,6 +26,17 @@ services:
       - SPRING_DATASOURCE_PASSWORD=admin
     ports:
       - "8080:8080"
+  
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: todo-app-frontend
+    depends_on:
+      - postgres
+      - backend
+    ports:
+      - "80:80"
 
 volumes:
   postgres-data:

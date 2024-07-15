@@ -1,0 +1,14 @@
+<div class="flex w-full h-screen justify-center items-center flex-col bg-slate-800">
+  <h1 class="text-white text-6xl">Todo App</h1>
+  <div class="input m-10">
+    <input class="px-8 py-3 outline-none border-none hover:border-orange-300 transition-all duration-500" #newTodoDescription placeholder="New Todo" />
+    <button class="px-6 py-3 bg-green-500 text-white text-bold font-bold" (click)="createTodo(newTodoDescription.value); newTodoDescription.value=''">Add</button>
+  </div>
+  <ul class="w-6/12 max-h-80 overflow-y-auto scrollbar">
+    <li [ngClass]="{'line-through': todo.completed}" class="align-middle text-slate-800 bg-white px-6 py-3 m-2 rounded-sm relative text-ellipsis " *ngFor="let todo of todos">
+      <input class="mr-2 mt-2" type="checkbox" [(ngModel)]="todo.completed" (change)="updateTodo(todo)" />
+      {{ todo.description }}
+      <ng-icon class=" text-red-500 absolute right-2 text-xl top-4 font-bold" name="heroXCircle" (click)="deleteTodo(todo.id)" ></ng-icon>
+    </li>
+  </ul>
+</div>
